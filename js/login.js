@@ -1,5 +1,4 @@
 $(function(){
-    alert("???");
     var socket;
 
     function imMessage(body, user, pwd,type) {
@@ -28,6 +27,13 @@ $(function(){
         }
     }
 
+    function saveJson(jsonE) {
+        jsonEse = {};
+        jsonEse = JSON.stringify(jsonE);
+        sessionStorage.socket = jsonEse;
+        //  sessionStorage.removeItem('jsonEsesession');
+    }
+
     function connect(immsg) {
         var wsurl = 'ws://127.0.0.1:8080/websocket';
         var i = 0;
@@ -36,6 +42,9 @@ $(function(){
             //连接建立
             websocket.onopen = function (evevt) {
                 console.log("Connected to WebSocket server.");
+                var cache = {"sock":websocket};
+                console.log(cache);
+                saveJson(cache);
                 send(immsg);
             }
             //收到消息
