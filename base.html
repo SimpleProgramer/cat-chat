@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>喵呜</title>
+		<link rel="stylesheet" href="css/amazeui.min.css" />
+		<link rel="stylesheet" href="css/main.css" />
+	</head>
+	<body>
+		<div class="box">
+			<iframe src="login.html" width="860" height="680" id="frame"></iframe>
+		</div>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/amazeui.min.js"></script>
+		<script type="text/javascript" src="js/zUI.js"></script>
+		<script>
+			$(function() {
+                var long = localStorage.getItem("login");
+                console.log(long);
+                localStorage.removeItem("login");
+                if (long == "1") {
+                    document.getElementById("frame").src = "catchat.html";
+                }
+                var socket;
+                var sockJson;
+                parseJson();
+                console.log(sockJson);
+
+                function parseJson() {
+					//读取
+					socket = sessionStorage.socket;
+					//重新转换为对象
+					sockJson = JSON.parse(socket);
+                }
+			})
+
+		</script>
+	</body>
+</html>
